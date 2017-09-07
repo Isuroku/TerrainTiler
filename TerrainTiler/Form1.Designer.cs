@@ -32,14 +32,14 @@
             this.pnlBaseGrid = new System.Windows.Forms.Panel();
             this.pnlColors = new System.Windows.Forms.Panel();
             this.pnlControls = new System.Windows.Forms.Panel();
+            this.btnCopyTerrain = new System.Windows.Forms.Button();
+            this.btnDeleteTerrain = new System.Windows.Forms.Button();
             this.lblLastLoaded = new System.Windows.Forms.Label();
             this.btnRewriteTerrain = new System.Windows.Forms.Button();
             this.tbTerrain = new System.Windows.Forms.TextBox();
             this.lbTerrains = new System.Windows.Forms.ListBox();
             this.btnLoadTerrain = new System.Windows.Forms.Button();
             this.btnSaveTerrain = new System.Windows.Forms.Button();
-            this.btnDeleteTerrain = new System.Windows.Forms.Button();
-            this.btnCopyTerrain = new System.Windows.Forms.Button();
             this.pnlControls.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -49,7 +49,7 @@
             this.rtLog.Location = new System.Drawing.Point(12, 606);
             this.rtLog.Name = "rtLog";
             this.rtLog.ReadOnly = true;
-            this.rtLog.Size = new System.Drawing.Size(992, 115);
+            this.rtLog.Size = new System.Drawing.Size(1360, 115);
             this.rtLog.TabIndex = 26;
             this.rtLog.TabStop = false;
             this.rtLog.Text = "";
@@ -59,16 +59,17 @@
             this.pnlBaseGrid.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pnlBaseGrid.Location = new System.Drawing.Point(223, 12);
             this.pnlBaseGrid.Name = "pnlBaseGrid";
-            this.pnlBaseGrid.Size = new System.Drawing.Size(570, 570);
+            this.pnlBaseGrid.Size = new System.Drawing.Size(787, 570);
             this.pnlBaseGrid.TabIndex = 27;
             // 
             // pnlColors
             // 
+            this.pnlColors.AutoScroll = true;
             this.pnlColors.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pnlColors.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.pnlColors.Location = new System.Drawing.Point(799, 12);
+            this.pnlColors.Font = new System.Drawing.Font("Arial Unicode MS", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.pnlColors.Location = new System.Drawing.Point(1016, 12);
             this.pnlColors.Name = "pnlColors";
-            this.pnlColors.Size = new System.Drawing.Size(205, 570);
+            this.pnlColors.Size = new System.Drawing.Size(356, 570);
             this.pnlColors.TabIndex = 28;
             // 
             // pnlControls
@@ -86,6 +87,26 @@
             this.pnlControls.Name = "pnlControls";
             this.pnlControls.Size = new System.Drawing.Size(205, 570);
             this.pnlControls.TabIndex = 29;
+            // 
+            // btnCopyTerrain
+            // 
+            this.btnCopyTerrain.Location = new System.Drawing.Point(3, 539);
+            this.btnCopyTerrain.Name = "btnCopyTerrain";
+            this.btnCopyTerrain.Size = new System.Drawing.Size(197, 23);
+            this.btnCopyTerrain.TabIndex = 7;
+            this.btnCopyTerrain.Text = "CopyTerrain";
+            this.btnCopyTerrain.UseVisualStyleBackColor = true;
+            this.btnCopyTerrain.Click += new System.EventHandler(this.btnCopyTerrain_Click);
+            // 
+            // btnDeleteTerrain
+            // 
+            this.btnDeleteTerrain.Location = new System.Drawing.Point(3, 382);
+            this.btnDeleteTerrain.Name = "btnDeleteTerrain";
+            this.btnDeleteTerrain.Size = new System.Drawing.Size(194, 23);
+            this.btnDeleteTerrain.TabIndex = 6;
+            this.btnDeleteTerrain.Text = "DeleteTerrain";
+            this.btnDeleteTerrain.UseVisualStyleBackColor = true;
+            this.btnDeleteTerrain.Click += new System.EventHandler(this.btnDeleteTerrain_Click);
             // 
             // lblLastLoaded
             // 
@@ -142,31 +163,11 @@
             this.btnSaveTerrain.UseVisualStyleBackColor = true;
             this.btnSaveTerrain.Click += new System.EventHandler(this.btnSaveTerrain_Click);
             // 
-            // btnDeleteTerrain
-            // 
-            this.btnDeleteTerrain.Location = new System.Drawing.Point(3, 382);
-            this.btnDeleteTerrain.Name = "btnDeleteTerrain";
-            this.btnDeleteTerrain.Size = new System.Drawing.Size(194, 23);
-            this.btnDeleteTerrain.TabIndex = 6;
-            this.btnDeleteTerrain.Text = "DeleteTerrain";
-            this.btnDeleteTerrain.UseVisualStyleBackColor = true;
-            this.btnDeleteTerrain.Click += new System.EventHandler(this.btnDeleteTerrain_Click);
-            // 
-            // btnCopyTerrain
-            // 
-            this.btnCopyTerrain.Location = new System.Drawing.Point(3, 539);
-            this.btnCopyTerrain.Name = "btnCopyTerrain";
-            this.btnCopyTerrain.Size = new System.Drawing.Size(197, 23);
-            this.btnCopyTerrain.TabIndex = 7;
-            this.btnCopyTerrain.Text = "CopyTerrain";
-            this.btnCopyTerrain.UseVisualStyleBackColor = true;
-            this.btnCopyTerrain.Click += new System.EventHandler(this.btnCopyTerrain_Click);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1014, 729);
+            this.ClientSize = new System.Drawing.Size(1384, 729);
             this.Controls.Add(this.pnlControls);
             this.Controls.Add(this.pnlColors);
             this.Controls.Add(this.pnlBaseGrid);

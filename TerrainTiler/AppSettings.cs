@@ -17,8 +17,9 @@ namespace TerrainTiler
         public CAppSettings()
         {
             _tiles = new List<CTileDescr>();
-            _tiles.Add(new CTileDescr("t1", Color.FromArgb(10, 20, 50), "d1"));
-            _tiles.Add(new CTileDescr("t2", Color.FromArgb(100, 200, 150), "d2"));
+            var arrow_left = '\u2190';
+            _tiles.Add(new CTileDescr("t1", Color.FromArgb(10, 20, 50), "d1", arrow_left));
+            _tiles.Add(new CTileDescr("t2", Color.FromArgb(100, 200, 150), "d2", arrow_left));
 
             _unitypath = "/";
         }

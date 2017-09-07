@@ -51,6 +51,8 @@ namespace TerrainTiler
 
         Dictionary<Vector2i, CCell> _cells;
 
+        SizeF _char_size;
+
         public CGrid(Form1 owner)
         {
             _owner = owner;
@@ -60,9 +62,8 @@ namespace TerrainTiler
             _center = new PointF(0, 0);
 
             _cells = new Dictionary<Vector2i, CCell>();
-            //_cells.Add(new CCell(this, new Vector2i(0, 0), ECellType.Plain));
-            //_cells.Add(new CCell(this, new Vector2i(-1, -1), ECellType.Hill));
-            //_cells.Add(new CCell(this, new Vector2i(1, 1), ECellType.Hill));
+
+            _char_size = SizeF.Empty;
         }
 
         public static Point Plus(Point p1, Point p2) { return new Point(p1.X + p2.X, p1.Y + p2.Y); }
@@ -129,7 +130,7 @@ namespace TerrainTiler
                     if (!_cells.ContainsKey(new Vector2i(i, j)))
                     {
                         Rectangle rct = GetCellRect(wndcenter, centercoord, i, j);
-                        DrawCell(rct, Color.LightBlue, graphics);
+                        DrawCell(rct, Color.LightBlue, Char.MinValue, graphics);
                     }
                 }
 
@@ -137,18 +138,29 @@ namespace TerrainTiler
             foreach (var c in _cells.Values)
             {
                 Rectangle rct = GetCellRect(rect, c.Coord.x, c.Coord.y);
-                DrawCell(rct, c.TileDescr.TileColor, graphics);
+                DrawCell(rct, c.TileDescr.TileColor, c.TileDescr.TileMarker, graphics);
             };
             
         }
 
         Pen _panelborderpen = new Pen(Color.Black);
-        Brush _brYellow = new SolidBrush(Color.LightYellow);
 
-        void DrawCell(Rectangle rect, Color color, Graphics graphics)
+        Brush _brBlack = new SolidBrush(Color.Black);
+
+        
+
+        void DrawCell(Rectangle rect, Color color, char Marker, Graphics graphics)
         {
             graphics.FillRectangle(GetBrushByCellType(color), rect);
             graphics.DrawRectangle(_panelborderpen, rect);
+
+            if(_char_size.IsEmpty)
+            {
+                _char_size = graphics.MeasureString(Marker.ToString(), _owner.GetCellFont());
+            }
+            PointF p = new PointF(rect.X + rect.Width / 2 - _char_size.Width / 2, rect.Y + rect.Height / 2 - _char_size.Height / 2);
+
+            graphics.DrawString(Marker.ToString(), _owner.GetCellFont(), _brBlack, p);
         }
 
         Vector2i MouseCoordToCellCood(Rectangle inWindowRect, Point location)

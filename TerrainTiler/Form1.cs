@@ -15,7 +15,7 @@ namespace TerrainTiler
 
     public partial class Form1 : Form
     {
-        public const string FileExt = ".bytes";
+        public const string FileExt = ".json";
 
         CAppSettings _settings;
 
@@ -93,7 +93,7 @@ namespace TerrainTiler
                 if (_selected_descr == null)
                     SelectDescr(t);
 
-                AddColorPanel(5, 5, i, 5, pnlColors.Width - 10, 50, t);
+                AddColorPanel(5, 5, i, 5, pnlColors.Width - 30, 50, t);
                 i++;
             }
 
@@ -115,6 +115,15 @@ namespace TerrainTiler
             cpnl.BorderStyle = BorderStyle.FixedSingle;
             cpnl.MouseDown += MouseDownOnColor;
             pnl.Controls.Add(cpnl);
+
+            var lblSymbol = new Label();
+            lblSymbol.Text = tile.TileMarker.ToString();
+            lblSymbol.TextAlign = ContentAlignment.MiddleCenter;
+            lblSymbol.Font = pnl.Font;
+            lblSymbol.Location = new Point(0, 0);
+            lblSymbol.Size = new Size(cpnl.Size.Width, cpnl.Size.Height);
+            lblSymbol.Enabled = false; //чтоб не загораживал нажатие мыши
+            cpnl.Controls.Add(lblSymbol);
 
             var lbl = new Label();
             lbl.Text = tile.Descr;
@@ -323,7 +332,8 @@ namespace TerrainTiler
             var di = new DirectoryInfo(Environment.CurrentDirectory);
             foreach(var f in di.GetFiles("*" + FileExt))
             {
-                lbTerrains.Items.Add(f.Name.Substring(0, f.Name.Length - 6));
+                string fn = Path.GetFileNameWithoutExtension(f.Name);
+                lbTerrains.Items.Add(fn);
             }
             if (lbTerrains.Items.Count > 0)
             {
@@ -371,9 +381,16 @@ namespace TerrainTiler
         private void btnDeleteTerrain_Click(object sender, EventArgs e)
         {
             FileInfo fl = GetSelectedFile();
+            if (fl == null)
+                return;
             fl.CopyTo(Environment.CurrentDirectory + "\\" + fl.Name + "_bak", true);
             fl.Delete();
             LoadTerrains(false);
+        }
+
+        internal Font GetCellFont()
+        {
+            return pnlBaseGrid.Font;
         }
     }
 }
